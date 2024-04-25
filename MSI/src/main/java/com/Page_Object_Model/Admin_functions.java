@@ -8,8 +8,9 @@ import com.Lib_Globals.Base_Class;
 
 public class Admin_functions extends Base_Class {
 
-
-	
+	public Admin_functions() {
+		PageFactory.initElements(driver, this);
+	}
 	
 	@FindBy(xpath = "//a[@href='/admin/upload-csv'][normalize-space()='Admin functions']")
 	private WebElement admin_Fun;
@@ -18,9 +19,7 @@ public class Admin_functions extends Base_Class {
 	private WebElement sdefewfe;
 	
 
-	public Admin_functions() {
-		PageFactory.initElements(driver, this);
-	}
+	
 
 	public WebElement getAdmin_Fun() {
 		return admin_Fun;

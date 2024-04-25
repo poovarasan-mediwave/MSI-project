@@ -19,9 +19,9 @@ public class Signup_Page extends Base_Class {
 	@FindBy(xpath = "//a[normalize-space()='BOOK AN APPOINTMENT']")
 	private WebElement book;
 
-	@FindBy(xpath = "//h1[normalize-space()='Select a service']/parent::div/following-sibling::div/a")
-	private List<WebElement> service_types;
-
+	@FindBy(xpath = "//button[normalize-space()='SIGN UP']")
+	private WebElement signUp_button;
+	
 	@FindBy(xpath = "(//span[@class='radio'])[1]")
 	private WebElement yesbtn;
 
@@ -127,13 +127,45 @@ public class Signup_Page extends Base_Class {
 	@FindBy(xpath = "(//span[@class='radio'])[2]")
 	private WebElement nosafe;
 
+	@FindBy(xpath = "//h1[normalize-space()='Select a service']/parent::div/following-sibling::div/a/button")
+	private List<WebElement> servic;
+
+	@FindBy(xpath = "//input[@name='yes']/following-sibling::span")
+	private WebElement pregnancy;
+
+	@FindBy(id = "postcode")
+	private WebElement postcode_field;
+
+	@FindBy(xpath = "//button[@type='submit'][normalize-space()='CHECK ELIGIBILITY']")
+	private WebElement eligibility_button;
+
+	public WebElement getResetpass() {
+		return resetpass;
+	}
+
+	public WebElement getPregnancy() {
+		return pregnancy;
+	}
+
+	public WebElement getPostcode_field() {
+		return postcode_field;
+	}
+
+	public WebElement getEligibility_button() {
+		return eligibility_button;
+	}
+
 	public WebElement getBook() {
 		return book;
 	}
 
-	public List<WebElement> getService_types() {
-		return service_types;
+	public List<WebElement> getServic() {
+		return servic;
 	}
+
+//	public WebElement getTOP() {
+//		return TOP;
+//	}
 
 	public WebElement getYesbtn() {
 		return yesbtn;
@@ -263,38 +295,11 @@ public class Signup_Page extends Base_Class {
 		return noukadd;
 	}
 
-	public WebElement getResetpass() {
-		return resetpass;
-	}
-
 	public WebElement getYessafe() {
 		return yessafe;
 	}
 
 	public WebElement getNosafe() {
 		return nosafe;
-	}
-
-	
-	public static void service_selection(List<WebElement> service_types, String actual) {
-		
-		for (int i = 0; i < service_types.size(); i++) {
-			WebElement webElement = service_types.get(i);
-			String text = webElement.getText();
-			if (text == actual) {
-				ClickOnElement(webElement);
-				
-				
-			}
-			else if (text =="VASECTOMY SERVICES") {
-				
-			}
-			else {
-				
-			}
-			
-		}
-
-		
 	}
 }

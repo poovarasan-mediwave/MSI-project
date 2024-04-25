@@ -1,5 +1,8 @@
 package com.Page_Object_Model;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -495,5 +498,136 @@ public class TOP_Page extends Base_Class {
 
 	public WebElement getGpdetails1() {
 		return gpdetails1;
+	}
+	
+	public static void Eligibility_flow(String service, String question_name, String button_name,
+			String scanquestion_name, String scanbutton_name, String LMPquestion_name, String LMPbutton_name,
+			String AppLMPquestion_name, String AppLMPbutton_name, String conceivequestion_name,
+			String conceivebutton_name, String riskquestion_name, String riskbutton_name,
+			String immediateriskquestion_name, String immediateriskbutton_name) {
+
+		driver.findElement(By.xpath("//h5[contains(text(),'" + service
+				+ "')]/ancestor::div[@class='Ecard-info']/following-sibling::div/div[@class='mini-link-set']/span/button/a[normalize-space()='Start now']"))
+				.click();
+		if (service.equalsIgnoreCase("TOP")) {
+			WebElement positive_pregnancy_radio = driver.findElement(By.xpath("//h6[contains(text(),'" + question_name
+					+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'" + button_name + "')]/span"));
+			if (question_name == "positive" && button_name == "Yes") {
+				positive_pregnancy_radio.click();
+				WebElement scan_radio = driver.findElement(By.xpath("//h6[contains(text(),'" + scanquestion_name
+						+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'" + scanbutton_name
+						+ "')]/span"));
+				if (scanquestion_name == "scan" && scanbutton_name == "Yes") {
+					scan_radio.click();
+					// need to update the date fields
+					driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+					// need to update the upcoming flows
+				} else {
+					scan_radio.click();
+					WebElement LMP_radio = driver.findElement(By.xpath("//h6[contains(text(),'" + LMPquestion_name
+							+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'" + LMPbutton_name
+							+ "')]/span"));
+					if (LMPquestion_name == "date of the first day" && LMPbutton_name == "Yes") {
+						LMP_radio.click();
+						// need to update the date fields
+						driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+
+					} else {
+						LMP_radio.click();
+						WebElement AppLMP_radio = driver
+								.findElement(By.xpath("//h6[contains(text(),'" + AppLMPquestion_name
+										+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'"
+										+ AppLMPbutton_name + "')]/span"));
+						if (AppLMPquestion_name == "approximately" && AppLMPbutton_name == "Yes") {
+							AppLMP_radio.click();
+							// need to update the date fields
+							driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+
+						} else {
+							AppLMP_radio.click();
+							WebElement conceive_radio = driver
+									.findElement(By.xpath("//h6[contains(text(),'" + conceivequestion_name
+											+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'"
+											+ conceivebutton_name + "')]/span"));
+							if (conceivequestion_name == "conceived" && conceivebutton_name == "Yes") {
+								conceive_radio.click();
+								// need to update the date field
+								driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+
+							} else {
+								conceive_radio.click();
+								System.out.println("TOP user enter into Unsure gestation flow");
+								driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+							}
+						}
+					}
+				}
+			} else {
+				positive_pregnancy_radio.click();
+				System.out.println(driver
+						.findElement(By.xpath("//div[@class='top-error'][contains(text(),'positive')]")).getText());
+
+			}
+			// need to update the DOB field
+			WebElement risk_radio = driver.findElement(By.xpath("//h6[contains(text(),'" + riskquestion_name
+					+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'" + riskbutton_name
+					+ "')]/span"));
+
+			if (riskquestion_name == "risk" && riskbutton_name == "Yes") {
+				risk_radio.click();
+				List<WebElement> risk_options = driver.findElements(By.xpath(
+						"//h6[contains(text(),'What harm are you at risk of')]/parent::div/following-sibling::div/div/label"));
+				for (WebElement single_risk : risk_options) {
+					single_risk.click();
+					if (single_risk.getText() == "Other") {
+						driver.findElement(By.xpath(
+								"//h6[contains(text(),'What harm are you at risk of')]/parent::div/following-sibling::div/div[@class='pt-4']/div/div/input"))
+								.sendKeys(null);
+					}
+				}
+				driver.findElement(By.xpath(
+						"//h6[normalize-space()='Please explain more about who/what is putting you at risk']/parent::div/following-sibling::div/label/div/div/textarea"))
+						.sendKeys(null);
+				WebElement immediaterisk_radio = driver
+						.findElement(By.xpath("//h6[contains(text(),'" + immediateriskquestion_name
+								+ "')]/parent::div/following-sibling::div/div/label[contains(text(),'"
+								+ immediateriskbutton_name + "')]/span"));
+				if (immediateriskquestion_name == "immediate risk" && immediateriskbutton_name == "Yes") {
+					immediaterisk_radio.click();
+					List<WebElement> immediaterisk_options = driver.findElements(By.xpath(
+							"//h6[contains(text(),'What harm are you at immediate risk of')]/parent::div/following-sibling::div/div/label"));
+//					for (int i = 0; i < immediaterisk_options.size(); i++) {
+//						if (i == num || i == num1) {
+//							WebElement single_risk = immediaterisk_options.get(i);
+//							single_risk.click();
+//							if (i==9) {
+//								driver.findElement(By.xpath(
+//										"//h6[contains(text(),'What harm are you at risk of')]/parent::div/following-sibling::div/div[@class='pt-4']/div/div/input"))
+//										.sendKeys(null);
+//							}
+//						}
+//					}
+					for (WebElement single_immediaterisk : immediaterisk_options) {
+						single_immediaterisk.click();
+						if (single_immediaterisk.getText() == "Other") {
+							driver.findElement(By.xpath(
+									"//h6[contains(text(),'What harm are you at immediate risk of')]/parent::div/following-sibling::div/div[@class='pt-4']/div/div/input"))
+									.sendKeys(null);
+						}
+					}
+					driver.findElement(By.xpath(
+							"//h6[normalize-space()='Please explain more about who/what is putting you at immediate risk']/parent::div/following-sibling::div/label/div/div/textarea"))
+							.sendKeys(null);
+				} else {
+					risk_radio.click();
+					driver.findElement(By.xpath("//button[normalize-space()='NEXT']")).click();
+				}
+
+			} else if (service.equalsIgnoreCase("VAS")) {
+
+			} else {
+
+			}
+		}
 	}
 }
