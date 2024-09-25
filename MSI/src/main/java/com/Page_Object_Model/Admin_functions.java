@@ -19,7 +19,8 @@ public class Admin_functions extends Base_Class {
 	private WebElement city;
 	
 
-	
+	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
+	private WebElement xpath_axis;
 
 	public WebElement getAdmin_Fun() {
 		return new_update;
