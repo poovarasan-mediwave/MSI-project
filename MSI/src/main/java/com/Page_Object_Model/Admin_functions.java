@@ -13,7 +13,7 @@ public class Admin_functions extends Base_Class {
 	}
 	
 	@FindBy(xpath = "//a[@href='/admin/upload-csv'][normalize-space()='Admin functions']")
-	private WebElement admin_Fun;
+	private WebElement existing;
 	
 	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
 	private WebElement city;
@@ -22,7 +22,7 @@ public class Admin_functions extends Base_Class {
 	
 
 	public WebElement getAdmin_Fun() {
-		return admin_Fun;
+		return existing;
 	}
 
 }
