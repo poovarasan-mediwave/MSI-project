@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import com.Configuration_Reader.FileReaderManager;
 import com.Lib_Globals.Base_Class;
 
+import io.cucumber.java.Before;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
@@ -16,7 +17,7 @@ import io.cucumber.junit.CucumberOptions;
 		"html:target/Report/cucumber.html", "pretty", "json:target/Report/cucumber.json", })
 public class Runner_Classs extends Base_Class {
 
-	@BeforeClass
+	@Before
 	public static void browsersetup() throws Throwable {
 		browserLaunch(FileReaderManager.getInstanceCR().getBrowser_name());
 		wait(10);
