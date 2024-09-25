@@ -18,8 +18,10 @@ public class Admin_functions extends Base_Class {
 	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
 	private WebElement city;
 	
+	private String xpath;
 
-	
+	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
+	private WebElement relative_xpath;
 
 	public WebElement getAdmin_Fun() {
 		return new_update;
