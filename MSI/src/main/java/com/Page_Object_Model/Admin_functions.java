@@ -21,7 +21,7 @@ public class Admin_functions extends Base_Class {
 	private String xpath;
 
 	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
-	private WebElement xpath_axis;
+	private WebElement relative_xpath;
 
 	public WebElement getAdmin_Fun() {
 		return new_update;
