@@ -22,7 +22,7 @@ public class Admin_functions extends Base_Class {
 	
 
 	public WebElement getAdmin_Fun() {
-		return admin_Fun;
+		return new_update;
 	}
 
 }
