@@ -18,6 +18,7 @@ public class Admin_functions extends Base_Class {
 	@FindBy(xpath = "//a[@class='\"+exDay+\"']")
 	private WebElement city;
 	
+	private String xpath;
 
 	
 
